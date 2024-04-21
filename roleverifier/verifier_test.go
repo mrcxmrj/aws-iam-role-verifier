@@ -1,4 +1,4 @@
-package main
+package roleverifier
 
 import (
 	"testing"
