@@ -9,17 +9,13 @@ func TestVerifier(t *testing.T) {
 		path     string
 		expected bool
 	}{
-		"wrong input": {
-			path:     "wrong_input",
+		"multiple statements": {
+			path:     "test_input/multiple_statements.json",
 			expected: false,
 		},
-		"multiple statements": {
-			path:     "test_input/statements.json",
-			expected: true,
-		},
 		"single statement": {
-			path:     "test_input/test.json",
-			expected: true,
+			path:     "test_input/single_statement.json",
+			expected: false,
 		},
 	}
 

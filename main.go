@@ -19,6 +19,7 @@ type PolicyDocument struct {
 	Statement []Statement
 }
 
+// NOTE: edge case: Resource can be nil (when NotResource is being used)
 type Statement struct {
 	Sid          string
 	Effect       string
@@ -33,7 +34,7 @@ type Statement struct {
 func verifier(path string) (bool, error) {
 	jsonFile, err := os.Open(path)
 	if err != nil {
-		return false, err
+		return true, err
 	}
 	defer jsonFile.Close()
 
@@ -41,16 +42,15 @@ func verifier(path string) (bool, error) {
 
 	var result RolePolicy
 	if err := json.Unmarshal(byteValue, &result); err != nil {
-		return false, err
+		return true, err
 	}
 
 	for _, statement := range result.PolicyDocument.Statement {
-		// fmt.Println("policy resource: " + statement.Resource)
 		if statement.Resource == "*" {
-			return true, nil
+			return false, nil
 		}
 	}
-	return false, nil
+	return true, nil
 }
 
 func main() {
