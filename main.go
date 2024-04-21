@@ -41,12 +41,11 @@ func verifier(path string) (bool, error) {
 
 	var result RolePolicy
 	if err := json.Unmarshal(byteValue, &result); err != nil {
-		fmt.Println(err)
 		return false, err
 	}
 
 	for _, statement := range result.PolicyDocument.Statement {
-		fmt.Println("policy resource: " + statement.Resource)
+		// fmt.Println("policy resource: " + statement.Resource)
 		if statement.Resource == "*" {
 			return true, nil
 		}
