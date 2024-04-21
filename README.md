@@ -14,9 +14,9 @@ go get github.com/mrcxmrj/aws-iam-role-verifier/roleverifier
 ```bash
 go run cmd/main.go <path_to_your_json_file>
 ```
-Running this command will print false if "*" is present in one of the Resource fields and true otherwise.
+Running this command will print false if "*" is present in one of the Resource fields, and true otherwise.
 ### Go module
-Import `"github.com/mrcxmrj/aws-iam-role-verifier/roleverifier"` into your code. This package exposes `Verify(path string) (bool error)` function, that works analogously to the CLI.\
+Import `"github.com/mrcxmrj/aws-iam-role-verifier/roleverifier"` into your code. This package exposes the `Verify(path string) (bool error)` function, that works analogously to the CLI.\
 Example usage:
 ```go
 package main
@@ -63,10 +63,10 @@ type Statement struct {
 }
 ```
 > [!NOTE]  
-> Since Statement field can contain either an array of Statement JSONs or just a singular JSON, they get stored after unmarshalling in either Statement or Statement Single
+> Since Statement field can contain either an array of Statement JSONs or just a singular JSON, they get stored after unmarshalling in either the Statement or Statement Single
 fields, respectively.
 ## Testing
-To add custom tests for the Verifier function - add a json file you want to test to `roleverifier/test_input` directory, then add a new element to the `tests` table
+To add custom tests for the Verify function - add a json file you want to test to `roleverifier/test_input` directory, then add a new element to the `tests` table
 in `roleverifier/verifier_test.go`:
 ```go
 tests := map[string]struct {
