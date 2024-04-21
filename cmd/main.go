@@ -13,7 +13,7 @@ func main() {
 		os.Exit(1)
 	}
 	path := args[1]
-	result, err := roleverifier.Verifier(path)
+	result, err := roleverifier.Verify(path)
 
 	if err != nil {
 		fmt.Println(err)
