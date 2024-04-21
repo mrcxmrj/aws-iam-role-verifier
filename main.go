@@ -54,7 +54,8 @@ func verifier(path string) (bool, error) {
 }
 
 func main() {
-	path := "inputs/statements.json"
+	args := os.Args
+	path := args[1]
 	result, err := verifier(path)
 
 	if err != nil {
