@@ -26,6 +26,7 @@ func TestVerifier(t *testing.T) {
 	for name, test := range tests {
 		test := test
 		t.Run(name, func(t *testing.T) {
+			t.Parallel()
 			input, expected := test.path, test.expected
 			result, err := verifier(input)
 			if err != nil {
