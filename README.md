@@ -1,5 +1,5 @@
 # AWS::IAM::Role Verifier
-Go module for verifying whether a AWS::IAM::Role Policy JSON file doesn't contain a wildcard (*) in the Resource field.
+Go module for verifying whether an AWS::IAM::Role Policy JSON file doesn't contain a wildcard (*) in the Resource field.
 ## Installation
 This module can be used both as a standalone CLI application and imported as a module into your Go project.
 ### CLI
@@ -16,7 +16,7 @@ go run cmd/main.go <path_to_your_json_file>
 ```
 Running this command will print false if "*" is present in one of the Resource fields and true otherwise.
 ### Go module
-Import `"github.com/mrcxmrj/aws-iam-role-verifier/roleverifier"` into your code. This package exposes `Verify(path string) bool error` function, that works analogously to the CLI.\
+Import `"github.com/mrcxmrj/aws-iam-role-verifier/roleverifier"` into your code. This package exposes `Verify(path string) (bool error)` function, that works analogously to the CLI.\
 Example usage:
 ```go
 package main
@@ -63,7 +63,8 @@ type Statement struct {
 }
 ```
 > [!NOTE]  
-> Since Statement field can contain either an array of Statement JSONs or just a singular JSON - they get stored either in Statement or Statement Single fields, respectively.
+> Since Statement field can contain either an array of Statement JSONs or just a singular JSON, they get stored after unmarshalling in either Statement or Statement Single
+fields, respectively.
 ## Testing
 To add custom tests for the Verifier function - add a json file you want to test to `roleverifier/test_input` directory, then add a new element to the `tests` table
 in `roleverifier/verifier_test.go`:
