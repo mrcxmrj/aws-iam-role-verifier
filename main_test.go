@@ -4,6 +4,6 @@ import (
 	"testing"
 )
 
-func MainTest(t *testing.T) {
+func TestVerifier(t *testing.T) {
 	print("ok")
 }

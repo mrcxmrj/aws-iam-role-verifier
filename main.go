@@ -30,10 +30,10 @@ type Statement struct {
 	NotResource  string
 }
 
-func main() {
-	jsonFile, err := os.Open("input/statements.json")
+func verifier(path string) (bool, error) {
+	jsonFile, err := os.Open(path)
 	if err != nil {
-		fmt.Println(err)
+		return false, err
 	}
 	defer jsonFile.Close()
 
@@ -42,12 +42,25 @@ func main() {
 	var result RolePolicy
 	if err := json.Unmarshal(byteValue, &result); err != nil {
 		fmt.Println(err)
+		return false, err
 	}
 
 	for _, statement := range result.PolicyDocument.Statement {
 		fmt.Println("policy resource: " + statement.Resource)
 		if statement.Resource == "*" {
-			fmt.Println(true)
+			return true, nil
 		}
+	}
+	return false, nil
+}
+
+func main() {
+	path := "inputs/statements.json"
+	result, err := verifier(path)
+
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(result)
 	}
 }
