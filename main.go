@@ -53,7 +53,7 @@ func (pd *PolicyDocument) UnmarshalJSON(data []byte) error {
 	return fmt.Errorf("Unable to unmarshal Statement")
 }
 
-func verifier(path string) (bool, error) {
+func Verifier(path string) (bool, error) {
 	jsonFile, err := os.Open(path)
 	if err != nil {
 		return true, err
@@ -81,8 +81,12 @@ func verifier(path string) (bool, error) {
 
 func main() {
 	args := os.Args
+	if len(args) != 2 {
+		fmt.Println("Wrong number of arguments!")
+		os.Exit(1)
+	}
 	path := args[1]
-	result, err := verifier(path)
+	result, err := Verifier(path)
 
 	if err != nil {
 		fmt.Println(err)

@@ -36,12 +36,12 @@ func TestVerifier(t *testing.T) {
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
 			input, expected := test.path, test.expected
-			result, err := verifier(input)
+			result, err := Verifier(input)
 			if err != nil {
-				t.Errorf("verifier(\"%s\"), returned an unexpected error: %s", input, err)
+				t.Errorf("Verifier(\"%s\"), returned an unexpected error: %s", input, err)
 			}
 			if result != expected {
-				t.Errorf("verifier(\"%s\") = %t; expected = %t", input, result, expected)
+				t.Errorf("Verifier(\"%s\") = %t; expected = %t", input, result, expected)
 			}
 		})
 	}
