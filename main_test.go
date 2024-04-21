@@ -9,13 +9,25 @@ func TestVerifier(t *testing.T) {
 		path     string
 		expected bool
 	}{
-		"multiple statements": {
+		"multiple statements with wildcards": {
 			path:     "test_input/multiple_statements.json",
 			expected: false,
 		},
-		"single statement": {
+		"single statement with wildcard": {
 			path:     "test_input/single_statement.json",
 			expected: false,
+		},
+		"not resource": {
+			path:     "test_input/not_resource.json",
+			expected: true,
+		},
+		"single statement with no wildcard": {
+			path:     "test_input/not_resource.json",
+			expected: true,
+		},
+		"multiple statements with no wildcards": {
+			path:     "test_input/not_resource.json",
+			expected: true,
 		},
 	}
 
