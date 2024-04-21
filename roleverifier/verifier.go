@@ -53,7 +53,7 @@ func (pd *PolicyDocument) UnmarshalJSON(data []byte) error {
 	return fmt.Errorf("Unable to unmarshal Statement")
 }
 
-func Verifier(path string) (bool, error) {
+func Verify(path string) (bool, error) {
 	jsonFile, err := os.Open(path)
 	if err != nil {
 		return true, err

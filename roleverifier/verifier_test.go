@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func TestVerifier(t *testing.T) {
+func TestVerify(t *testing.T) {
 	tests := map[string]struct {
 		path     string
 		expected bool
@@ -36,7 +36,7 @@ func TestVerifier(t *testing.T) {
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
 			input, expected := test.path, test.expected
-			result, err := Verifier(input)
+			result, err := Verify(input)
 			if err != nil {
 				t.Errorf("Verifier(\"%s\"), returned an unexpected error: %s", input, err)
 			}
